@@ -5,7 +5,6 @@ const goToRoom = (history, roomId) => {
   history.push(`/${roomId}`)
 }
 
-
 export function goToRoomInput({history}) {
   let [roomId, setRoomId] = useState(shortId.generate());
 

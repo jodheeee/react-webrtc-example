@@ -120,7 +120,6 @@ class Video extends React.Component {
       this.state.initiator
     );
     this.setState({ peer });
-
     peer.on('signal', data => {
       const signal = {
         room: roomId,
@@ -136,7 +135,7 @@ class Video extends React.Component {
       console.log(err);
     });
   };
-
+  
   call = otherId => {
     this.videoCall.connect(otherId);
   };

@@ -1,14 +1,17 @@
-var app = require('express')();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
+const express = require('express');
+const http = require('http');
+const app = express();
+const server = http.createServer(app);
+const io = require('socket.io').listen(server);
 
-server.listen(process.env.PORT || 80);
+server.listen(process.env.PORT || 3001);
 
 io.on('connection', function (socket) {
     socket.on('join', function (data) {
         socket.join(data.roomId);
         socket.room = data.roomId;
         const sockets = io.of('/').in().adapter.rooms[data.roomId];
+        console.log(sockets);
         if(sockets.length===1){
             socket.emit('init')
         }else{
